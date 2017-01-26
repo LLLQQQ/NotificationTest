@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.provider.Settings;
@@ -46,6 +47,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         .setContentText("This is Joe's conient text")
                         .setSound(soundUri)
                         .setVibrate(vibrates)
+                        .setLights(Color.GREEN, 1000, 1000)
                         .setContentIntent(pendingIntent);
                 manager.notify(1, builder.build());
                 break;

@@ -3,7 +3,9 @@ package com.example.notificationtest;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -27,14 +29,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.send_notice:
+                Intent intent = new Intent(this, NotificationActivity.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 Notification.Builder builder = new Notification.Builder(MainActivity.this);
                 builder.setSmallIcon(R.mipmap.ic_launcher)
                         .setTicker("This is Joe's ticker text")
                         .setWhen(System.currentTimeMillis())
-                        .setAutoCancel(true)
+                        //          .setAutoCancel(true)
                         .setContentTitle("This is Joe's content title")
-                        .setContentText("This is Joe's conient text");
+                        .setContentText("This is Joe's conient text")
+                        .setContentIntent(pendingIntent);
                 manager.notify(1, builder.build());
                 break;
             default:

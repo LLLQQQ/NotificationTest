@@ -35,6 +35,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Intent intent = new Intent(this, NotificationActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 Uri soundUri = Uri.fromFile(new File("/system/media/audio/alarms/Alarm_Buzzer.ogg"));
+                long[] vibrates = {0, 1000, 1000, 1000};
                 NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 Notification.Builder builder = new Notification.Builder(MainActivity.this);
                 builder.setSmallIcon(R.mipmap.ic_launcher)
@@ -44,6 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         .setContentTitle("This is Joe's content title")
                         .setContentText("This is Joe's conient text")
                         .setSound(soundUri)
+                        .setVibrate(vibrates)
                         .setContentIntent(pendingIntent);
                 manager.notify(1, builder.build());
                 break;
